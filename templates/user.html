@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ user }}</title>
+<body>
+<ul>
+	{% for item in sessions %}
+	<li><a href="/session/{{ item["id"] }}">{{ item["created"] }}</a></li>
+	{% endfor %}
+</ul>
+</body>
+</html>

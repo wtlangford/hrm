@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heart Rate Monitoring Sessions</title>
+<style>
+td {
+	text-align: center;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+<body style="text-align: center;">
+<div>
+	{% if page == 0 %}
+	<table>
+		<tr>
+			<td><strong>Overall Min. BPM:</strong>{{ globalStats["min_bpm"] }}</td>
+			<td><strong>Overall Max. BPM:</strong>{{ globalStats["max_bpm"] }}</td>
+			<td><strong>Overall Avg. BPM:</strong>{{ globalStats["avg_bpm"] }}</td>
+		</tr>
+	</table>
+	{% endif %}
+	<table>
+		<tr>
+			<th>Created</th>
+			<th>Min.<br />BPM</th>
+			<th>Max.<br />BPM</th>
+			<th>Avg.<br />BPM</th>
+			<th>Time in<br />Zone 1</th>
+			<th>Time in<br />Zone 2</th>
+			<th>Time in<br />Zone 3</th>
+			<th>Time in<br />Zone 4</th>
+		</tr>
+		<!--<div style="position: relative; overflow: hidden; width: 90%; left: 5%;">-->
+		{% for item in sessions %}
+		<tr>
+			<td>{{ item["created"] }}</td>
+			<td>{{ item["min_bpm"] }}</td>
+			<td>{{ item["max_bpm"] }}</td>
+			<td>{{ item["avg_bpm"] }}</td>
+			<td>{{ item["zone1"] }}</td>
+			<td>{{ item["zone2"] }}</td>
+			<td>{{ item["zone3"] }}</td>
+			<td>{{ item["zone4"] }}</td>
+			<td><a href="/sessionGraph/{{item["id"]}}">Heart Rate Data</a></td>
+		</tr>
+	{% endfor %}
+</table>
+</div>
+	<div style="position: relative; width: 80%; left: 10%; text-align: center;">
+		{% if page > 0 %}
+		<a href="/sessions/{{ page - 1}}">Previous Page</a>&nbsp;&nbsp;&nbsp;
+		{% endif %}
+		<a href="/sessions/{{ page + 1}}">Next Page</a>
+	</div>
+</body>
+</html>

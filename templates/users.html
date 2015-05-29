@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Users</title>
+<body>
+<ul>
+	{% for item in users %}
+	<li><a href="/users/{{ item["id"] }}">{{ item["username"] }} - {{ item["session_count"] }} Sessions</a></li>
+	{% endfor %}
+</ul>
+</body>
+</html>
